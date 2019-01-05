@@ -69,7 +69,7 @@ public class SnowFlakeInAction {
     public synchronized long nextId(){
         long timeStamp = timeGen();
         if(timeStamp < lastTimestamp){
-            throw new SeqNoGenerateExeception(String.format("current timestamp is before than last timestamp, interval millis is %d", lastTimestamp -timeStamp));
+            throw new SeqNoGenerateException(String.format("current timestamp is before than last timestamp, interval millis is %d", lastTimestamp -timeStamp));
         }else if(timeStamp == lastTimestamp){
             // 如果是在同一个时间戳内生成的，则sequenceId在这一毫秒内递增
             sequenceNoId = (sequenceNoId+1) & sequenceIDMask;
