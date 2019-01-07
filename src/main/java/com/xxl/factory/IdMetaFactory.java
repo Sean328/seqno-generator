@@ -10,8 +10,9 @@ import com.xxl.domain.IDMeta;
  **/
 public class IdMetaFactory {
 
-    private IDMeta idMeta;
-    private ID id;
+    private IDMeta common = new IDMeta((byte)1,(byte)1,(byte)10,(byte)38,(byte)14);
+    private IDMeta maxPeek = new IDMeta((byte)1,(byte)1,(byte)10,(byte)32,(byte)20);
+
 
 
 }
