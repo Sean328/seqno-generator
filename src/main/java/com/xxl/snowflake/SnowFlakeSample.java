@@ -4,7 +4,7 @@ package com.xxl.snowflake;
  * @author lixin
  * @date 2019-01-03 10:50
  **/
-public class SnowFlakeSample1 {
+public class SnowFlakeSample {
     /**
      * 雪花算法解析 结构 snowflake的结构如下(每部分用-分开):
      * 0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000
@@ -94,7 +94,7 @@ public class SnowFlakeSample1 {
      * @param workerId     工作ID (0~31)
      * @param dataCenterId 数据中心ID (0~31)
      */
-    public SnowFlakeSample1(long workerId, long dataCenterId) {
+    public SnowFlakeSample(long workerId, long dataCenterId) {
         if (workerId > maxWorkerId || workerId < 0) {
             throw new IllegalArgumentException(String.format("workerId can't be greater than %d or less than 0", maxWorkerId));
         }
@@ -183,7 +183,7 @@ public class SnowFlakeSample1 {
      */
     public static void main(String[] args) {
         System.out.println(System.currentTimeMillis());
-        SnowFlakeSample1 idWorker = new SnowFlakeSample1(1, 1);
+        SnowFlakeSample idWorker = new SnowFlakeSample(1, 1);
         long startTime = System.nanoTime();
         for (int i = 0; i < 50000; i++) {
             long id = idWorker.nextId();

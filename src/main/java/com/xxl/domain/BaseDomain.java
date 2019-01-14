@@ -5,8 +5,8 @@ import com.alibaba.fastjson.JSON;
 import java.io.Serializable;
 
 /**
- * @author sean
- * @date 2019/01/06/23:49
+ * @author lixin
+ * @date 2019-01-04 14:38
  **/
 public class BaseDomain implements Serializable {
 

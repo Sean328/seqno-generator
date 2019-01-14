@@ -1,10 +1,10 @@
 package com.xxl.domain;
 
 /**
- * @author sean
- * @date 2019/01/06/23:50
+ * @author lixin
+ * @date 2019-01-04 15:11
  **/
-public class ID extends BaseDomain{
+public class ID extends BaseDomain {
     private static final long serialVersionUID = 1841732843392287161L;
 
     private long version;
@@ -12,6 +12,16 @@ public class ID extends BaseDomain{
     private long machine;
     private long time;
     private long sequence;
+
+    public ID(){
+    }
+
+    public ID(long version,long type,long machine){
+        this.version = version;
+        this.type = type;
+        this.machine = machine;
+    }
+
 
     public long getVersion() {
         return version;

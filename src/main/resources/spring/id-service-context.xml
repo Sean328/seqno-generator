@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="idService" class="com.xxl.sequence.IdServiceImpl" init-method="init">
+        <property name="type" value="seconds" />
+        <property name="id" ref="idInstanceSeconds"/>
+    </bean>
+
+    <!-- 这里可以配置机器ID，版本号和生成类型 -->
+    <bean id="idInstanceSeconds" class="com.xxl.domain.ID">
+        <property name="version" value="0"/>
+        <property name="type" value="0"/>
+        <property name="machine" value="${sequence.machine.id}"/>
+    </bean>
+
+    <!-- 这里可以配置机器ID，版本号和生成类型 -->
+    <bean id="idInstanceMillis" class="com.xxl.domain.ID">
+        <property name="version" value="0"/>
+        <property name="type" value="1"/>
+        <property name="machine" value="0"/>
+    </bean>
+
+</beans>

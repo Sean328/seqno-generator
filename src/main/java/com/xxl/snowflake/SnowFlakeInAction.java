@@ -1,5 +1,6 @@
 package com.xxl.snowflake;
 
+import com.xxl.exception.IdGenerateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -69,7 +70,7 @@ public class SnowFlakeInAction {
     public synchronized long nextId(){
         long timeStamp = timeGen();
         if(timeStamp < lastTimestamp){
-            throw new SeqNoGenerateException(String.format("current timestamp is before than last timestamp, interval millis is %d", lastTimestamp -timeStamp));
+            throw new IdGenerateException(String.format("current timestamp is before than last timestamp, interval millis is %d", lastTimestamp -timeStamp));
         }else if(timeStamp == lastTimestamp){
             // 如果是在同一个时间戳内生成的，则sequenceId在这一毫秒内递增
             sequenceNoId = (sequenceNoId+1) & sequenceIDMask;
@@ -85,7 +86,6 @@ public class SnowFlakeInAction {
         lastTimestamp = timeStamp;
 
         // 通过移位或运算拼成64位的ID
-
 
         long longId = ((timeStamp - initialPoch) << timestampLeftShift)
                 | (dataCenterId << dataCenterIdShift)
