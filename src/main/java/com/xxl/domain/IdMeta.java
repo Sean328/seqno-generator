@@ -32,7 +32,9 @@ public class IdMeta extends BaseDomain {
 
     private long sequenctBitsMask;
 
-    public IdMeta(byte versionBits,byte typeBits,byte machineBits,byte timeBits,byte sequenceBits){
+    private String timeType;
+
+    public IdMeta(byte versionBits, byte typeBits, byte machineBits, byte timeBits, byte sequenceBits){
         this.versionBits = versionBits;
         this.typeBits = typeBits;
         this.machineBits = machineBits;
@@ -125,4 +127,12 @@ public class IdMeta extends BaseDomain {
         return -1 ^ (-1L << sequenceBits);
     }
 
+    public String getTimeType() {
+        return timeType;
+    }
+
+    public IdMeta setTimeType(String timeType) {
+        this.timeType = timeType;
+        return this;
+    }
 }

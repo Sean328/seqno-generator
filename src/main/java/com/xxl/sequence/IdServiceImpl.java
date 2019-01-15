@@ -22,9 +22,12 @@ public class IdServiceImpl implements IdService {
     private String type;
     private long lastTimeStamp = -1L;
     private AtomicLong sequenceNoId = new AtomicLong(0);
+    private long millsInitialPoch = 1514736000000L;
+    private long secondsInitialPoch = 1514736000L;
 
     public void init(){
         idMeta = IdMetaInstanceHolder.getIdMetaInstance(type);
+        idMeta.setTimeType(type);
         if(idMeta == null){
             throw new IdGenerateException("获取IdMeta失败");
         }
@@ -49,10 +52,19 @@ public class IdServiceImpl implements IdService {
         }
 
         lastTimeStamp = currentTime;
-        id.setTime(currentTime);
         id.setSequence(sequenceNoId.get());
 
+        setSimplifyTimeStamp(id,currentTime);
+
         return genId(id,idMeta);
+    }
+
+    private void setSimplifyTimeStamp(ID id, long currentTime) {
+        if(type.equals(IdMetaTypeEnum.SECONDS.getCode())){
+            id.setTime(currentTime-secondsInitialPoch);
+        } else if(type.equals(IdMetaTypeEnum.MILLIS.getCode())){
+            id.setTime(currentTime-millsInitialPoch);
+        }
     }
 
     private long tilNextMillis(long lastTimeStamp){
